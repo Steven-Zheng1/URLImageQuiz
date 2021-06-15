@@ -37,7 +37,7 @@ public class quiz implements ActionListener {
    char answer;
    int index;
    int correctGuesses = 0;
-   int totalQuestion = 4;
+   int totalQuestion = imageFile.length;
    int result;
    int seconds = 30;
 
