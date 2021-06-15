@@ -3,6 +3,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -12,18 +13,23 @@ public class quiz implements ActionListener {
    String question = "Who is this character?";
 
    String[] imageFile = {
-           "http://2.bp.blogspot.com/-sQvgU6dayNc/UqvM8flaQrI/AAAAAAAAA7Q/RA6cFs0jO-o/s1600/arturia+pendragon.jpg"
+           "http://2.bp.blogspot.com/-sQvgU6dayNc/UqvM8flaQrI/AAAAAAAAA7Q/RA6cFs0jO-o/s1600/arturia+pendragon.jpg",
+           "https://i0.wp.com/beneaththetangles.com/wp-content/uploads/2021/03/fate-zero-1c.png?resize=1024%2C573&ssl=1",
+           "https://static0.cbrimages.com/wordpress/wp-content/uploads/2019/06/Gilgamesh-Fate-Zero.jpg?q=50&fit=crop&w=960&h=500&dpr=1.5",
+           "https://static.wikia.nocookie.net/typemoon/images/9/91/BerserkerMorganStage4.jpg/revision/latest/scale-to-width-down/512?cb=20210611153704"
+
    };
+   ArrayList<ImageIcon> images = new ArrayList<>();
 
    String[][] options = {
            {"Artoria", "Nero", "Jeanne", "Okita"},
-           {"Emiya", "Kiritsugu", "Archer", "Faker"},
+           {"Shirou", "Kiritsugu", "Archer", "Faker"},
            {"Gilgamesh", "Enkidu", "Ishtar", "Tiamat"},
            {"Morgan le Fay", "Merlin", "Waver", "Scathach Skadi"}
    };
    char[] answers = {
            'A',
-           'A',
+           'B',
            'A',
            'A'
    };
@@ -64,6 +70,7 @@ public class quiz implements ActionListener {
         frame.getContentPane().setBackground(new Color(50, 50, 50));
         frame.setLayout(null);
         frame.setResizable(false);
+        frame.setIconImage(ImageIO.read(new URL("https://pm1.narvii.com/6184/f79f9cdfb0f1ca12ef6d0a77b0b6a40f0ceb5e70_hq.jpg")));
 
         //This is the first line of text
         textfield.setBounds(0, 0, 650, 50);
@@ -85,12 +92,7 @@ public class quiz implements ActionListener {
         textArea.setEditable(false);
 
         image.setBounds(0,75,500,200);
-        URL url = new URL(imageFile[index]);
-        Image urlImg = ImageIO.read(url);
-        ImageIcon icon = new ImageIcon(urlImg);
-        Image scaledImg = icon.getImage().getScaledInstance(500, 200, Image.SCALE_DEFAULT);
-        icon = new ImageIcon(scaledImg);
-        image.setIcon(icon);
+
 
         buttonA.setBounds(0,300,100,100);
         buttonA.setFont(new Font("Button A", Font.BOLD, 35));
@@ -172,6 +174,15 @@ public class quiz implements ActionListener {
         percentage.setHorizontalAlignment(JTextField.CENTER);
         percentage.setEditable(false);
 
+        for(int a = 0; a < imageFile.length; a++) {
+            URL urlLoop = new URL(imageFile[a]);
+            Image urlLoopImg = ImageIO.read(urlLoop);
+            ImageIcon iconLoop = new ImageIcon(urlLoopImg);
+            Image scaledImgLoop = iconLoop.getImage().getScaledInstance(500, 200, Image.SCALE_DEFAULT);
+            iconLoop = new ImageIcon(scaledImgLoop);
+            images.add(iconLoop);
+        }
+
 
         frame.add(timeLabel);
         frame.add(secondLeft);
@@ -213,7 +224,7 @@ public class quiz implements ActionListener {
             answerLabelB.setText(options[index][1]);
             answerLabelC.setText(options[index][2]);
             answerLabelD.setText(options[index][3]);
-            
+            image.setIcon(images.get(index));
 
             timer.start();
 
