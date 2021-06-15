@@ -1,5 +1,9 @@
 import java.awt.event.*;
 import java.awt.*;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 
@@ -7,21 +11,27 @@ public class quiz implements ActionListener {
 
    String question = "Who is this character?";
 
+   String[] imageFile = {
+           "http://2.bp.blogspot.com/-sQvgU6dayNc/UqvM8flaQrI/AAAAAAAAA7Q/RA6cFs0jO-o/s1600/arturia+pendragon.jpg"
+   };
+
    String[][] options = {
            {"Artoria", "Nero", "Jeanne", "Okita"},
            {"Emiya", "Kiritsugu", "Archer", "Faker"},
            {"Gilgamesh", "Enkidu", "Ishtar", "Tiamat"},
+           {"Morgan le Fay", "Merlin", "Waver", "Scathach Skadi"}
    };
    char[] answers = {
            'A',
-           'B',
-           'C'
+           'A',
+           'A',
+           'A'
    };
    char guess;
    char answer;
    int index;
    int correctGuesses = 0;
-   int totalQuestion = question.length();
+   int totalQuestion = 4;
    int result;
    int seconds = 30;
 
@@ -41,10 +51,13 @@ public class quiz implements ActionListener {
 
    JLabel timeLabel = new JLabel();
    JLabel secondLeft = new JLabel();
+
+   JLabel image = new JLabel();
+
    JTextField numberRight = new JTextField();
    JTextField percentage = new JTextField();
 
-    public quiz() {
+    public quiz() throws IOException {
         //basic frame declaration
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(650, 650);
@@ -62,7 +75,7 @@ public class quiz implements ActionListener {
         textfield.setEditable(false);
         textfield.setText(question);
         //This is the second line of text on screen
-        textArea.setBounds(0, 75, 500, 200);
+        textArea.setBounds(0, 60, 650, 50);
         textArea.setLineWrap(true); //if the text go off the screen, it will move to next line
         textArea.setWrapStyleWord(true);
         textArea.setBackground(new Color(25, 25, 25));
@@ -70,6 +83,14 @@ public class quiz implements ActionListener {
         textArea.setFont(new Font("Ink Free", Font.BOLD, 30));
         textArea.setBorder(BorderFactory.createBevelBorder(1));
         textArea.setEditable(false);
+
+        image.setBounds(0,75,500,200);
+        URL url = new URL(imageFile[index]);
+        Image urlImg = ImageIO.read(url);
+        ImageIcon icon = new ImageIcon(urlImg);
+        Image scaledImg = icon.getImage().getScaledInstance(500, 200, Image.SCALE_DEFAULT);
+        icon = new ImageIcon(scaledImg);
+        image.setIcon(icon);
 
         buttonA.setBounds(0,300,100,100);
         buttonA.setFont(new Font("Button A", Font.BOLD, 35));
@@ -135,6 +156,23 @@ public class quiz implements ActionListener {
         timeLabel.setHorizontalAlignment((JTextField.CENTER));
         timeLabel.setText("Timer: ");
 
+        numberRight.setBounds(225,225,200,100);
+        numberRight.setBackground(new Color(25,25,25));
+        numberRight.setForeground(new Color(25,255,0));
+        numberRight.setFont(new Font("Ink Free", Font.BOLD,50));
+        numberRight.setBorder(BorderFactory.createBevelBorder(1));
+        numberRight.setHorizontalAlignment(JTextField.CENTER);
+        numberRight.setEditable(false);
+
+        percentage.setBounds(225,325,200,100);
+        percentage.setBackground(new Color(25,25,25));
+        percentage.setForeground(new Color(25,255, 0));
+        percentage.setFont(new Font("Ink Free",Font.BOLD,50));
+        percentage.setBorder(BorderFactory.createBevelBorder(1));
+        percentage.setHorizontalAlignment(JTextField.CENTER);
+        percentage.setEditable(false);
+
+
         frame.add(timeLabel);
         frame.add(secondLeft);
         frame.add(answerLabelA);
@@ -147,20 +185,140 @@ public class quiz implements ActionListener {
         frame.add(buttonD);
         frame.add(textArea);
         frame.add(textfield);
+        frame.add(image);
         frame.setVisible(true);
-    }
-    public void nextQuestion() {
 
+        nextQuestion();
+    }
+    Timer timer = new Timer(1000, new ActionListener() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            seconds--;
+            secondLeft.setText(String.valueOf(seconds));
+
+            if(seconds <= 0) {
+                displayAnswer();
+            }
+        }
+    });
+    public void nextQuestion() {
+        if(index >= totalQuestion) {
+            results();
+        }
+        else {
+            textfield.setText("Question " + (index + 1));
+            textArea.setText(question);
+            answerLabelA.setText(options[index][0]);
+            answerLabelB.setText(options[index][1]);
+            answerLabelC.setText(options[index][2]);
+            answerLabelD.setText(options[index][3]);
+            
+
+            timer.start();
+
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //disable buttons
+        buttonA.setEnabled(false);
+        buttonB.setEnabled(false);
+        buttonC.setEnabled(false);
+        buttonD.setEnabled(false);
 
+        if(e.getSource() == buttonA) {
+            answer = 'A';
+            if(answer == answers[index]) {
+                correctGuesses++;
+            }
+        }
+        if(e.getSource() == buttonB) {
+            answer = 'B';
+            if(answer == answers[index]) {
+                correctGuesses++;
+            }
+        }
+        if(e.getSource() == buttonC) {
+            answer = 'C';
+            if(answer == answers[index]) {
+                correctGuesses++;
+            }
+        }
+        if(e.getSource() == buttonD) {
+            answer = 'D';
+            if(answer == answers[index]) {
+                correctGuesses++;
+            }
+        }
+        displayAnswer();
     }
     public void displayAnswer() {
+        //disable buttons
+        buttonA.setEnabled(false);
+        buttonB.setEnabled(false);
+        buttonC.setEnabled(false);
+        buttonD.setEnabled(false);
 
+        if(answers[index] != 'A') {
+            answerLabelA.setForeground(new Color(255, 0 , 0));
+        }
+        if(answers[index] != 'B') {
+            answerLabelB.setForeground(new Color(255, 0 , 0));
+        }
+        if(answers[index] != 'C') {
+            answerLabelC.setForeground(new Color(255, 0 , 0));
+        }
+        if(answers[index] != 'D') {
+            answerLabelD.setForeground(new Color(255, 0 , 0));
+        }
+
+        Timer pause = new Timer(2000, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                answerLabelA.setForeground(new Color(25, 255 , 0));
+                answerLabelB.setForeground(new Color(25, 255 , 0));
+                answerLabelC.setForeground(new Color(25, 255 , 0));
+                answerLabelD.setForeground(new Color(25, 255 , 0));
+
+                answer = ' ';
+                seconds = 10;
+                secondLeft.setText(String.valueOf(seconds));
+                buttonA.setEnabled(true);
+                buttonB.setEnabled(true);
+                buttonC.setEnabled(true);
+                buttonD.setEnabled(true);
+
+                index++;
+                nextQuestion();
+            }
+        });
+
+        pause.setRepeats(false);
+        pause.start();
     }
     public void results() {
+        buttonA.setEnabled(false);
+        buttonB.setEnabled(false);
+        buttonC.setEnabled(false);
+        buttonD.setEnabled(false);
+
+        result = (int)((correctGuesses/(double)totalQuestion) * 100);
+
+        textfield.setText("RESULTS");
+        textArea.setText("");
+        answerLabelA.setText("");
+        answerLabelB.setText("");
+        answerLabelC.setText("");
+        answerLabelD.setText("");
+
+        numberRight.setText(correctGuesses + "/" + totalQuestion);
+        percentage.setText(result + "%");
+
+        frame.add(percentage);
+        frame.add(numberRight);
 
     }
 }
