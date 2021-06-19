@@ -7,7 +7,10 @@
  ***************************************************************************************/
 import javax.swing.*;
 public class main {
+    //frame
     JFrame frame = new JFrame();
+    //
     JButton
+
 
 }
