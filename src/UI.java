@@ -78,10 +78,25 @@ public class UI {
         textfield.setBorder(BorderFactory.createBevelBorder(1));
         textfield.setHorizontalAlignment(JTextField.CENTER);
         textfield.setEditable(false);
-        textfield.setText("Who is this character");
+
+        //text area properties
+        textArea.setBounds(0, 100, 500, 50);
+        textArea.setLineWrap(true); //if the text go off the screen, it will move to next line
+        textArea.setWrapStyleWord(true);
+        textArea.setBackground(new Color(25, 25, 25));
+        textArea.setForeground(new Color(25, 255, 0));
+        textArea.setFont(new Font("Ink Free", Font.BOLD, 30));
+        textArea.setBorder(BorderFactory.createBevelBorder(1));
+        textArea.setEditable(false);
 
         //setting of button properties
-        buttonStart.setBounds(500, 500, 80, 80);
+        buttonStart.setBounds(420, 500, 160, 80);
+        buttonStart.setFont(new Font("Pixal Font", Font.BOLD, 30));
+        buttonStart.setText("BEGIN");
+
+        buttonInfo.setBounds(420,500,160,80);
+        buttonInfo.setFont(new Font("Pixal Font", Font.BOLD, 30));
+        buttonInfo.setText("START");
 
         //setting panel colors to identify panels
         panelStart.setBackground(Color.orange);
@@ -93,6 +108,7 @@ public class UI {
         panelInfo.add(buttonInfo);
         //main screen starts
         panelQuiz.add(textfield);
+        panelQuiz.add(textArea);
         panelQuiz.add(buttonQuizA);
         panelQuiz.add(buttonQuizB);
         panelQuiz.add(buttonQuizC);
@@ -105,6 +121,14 @@ public class UI {
 
         //setting card layout
         panelContainer.setLayout(layout);
+
+        //disabling default layout
+        panelStart.setLayout(null);
+        panelInfo.setLayout(null);
+        panelQuiz.setLayout(null);
+        panelResult.setLayout(null);
+        panelDownload.setLayout(null);
+
         panelContainer.add(panelStart, "1");
         panelContainer.add(panelInfo, "2");
         panelContainer.add(panelQuiz, "3");
@@ -141,7 +165,7 @@ public class UI {
 
         //switching screen
         layout.show(panelContainer, "3");
-
+        nextQuestion();
 
 
     }
@@ -150,6 +174,8 @@ public class UI {
             layout.show(panelContainer, "4");
         }
         else {
+            textfield.setText("Question " + (index + 1));
+            textArea.setText(question);
 
         }
     }
