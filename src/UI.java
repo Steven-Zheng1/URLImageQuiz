@@ -52,11 +52,18 @@ public class UI {
     JButton buttonQuizC = new JButton();
     JButton buttonQuizD = new JButton();
 
+    //Labels options for buttons
+    JLabel optionA = new JLabel();
+    JLabel optionB = new JLabel();
+    JLabel optionC = new JLabel();
+    JLabel optionD = new JLabel();
+
     //Main Screen Button Textfields;
     JTextField textfield = new JTextField();
 
-    //Main Screen Text Area
+    //Text Area
     JTextArea textArea = new JTextArea();
+    JTextArea infoText = new JTextArea();
 
     //Result Screen
     JButton buttonScore = new JButton();
@@ -70,22 +77,32 @@ public class UI {
         frame.setSize(1000, 700);
         frame.setResizable(false);
 
+        //info text
+        infoText.setBounds(100, 100, 900, 500);
+        infoText.setLineWrap(true); //if the text go off the screen, it will move to next line
+        infoText.setWrapStyleWord(true);
+        infoText.setBackground(Color.RED);
+        infoText.setForeground(new Color(25, 25, 25));
+        infoText.setFont(new Font("Pixal Font", Font.BOLD, 30));
+        infoText.setEditable(false);
+        infoText.setText("1)GUESS THE ANIME CHARACTER IN THE PICTURE.\n2)YOU WILL HAVE 30 SECONDS EACH QUESTION.\n3)GOOD LUCK.");
+
         //setting of textfield properties for main screen
         textfield.setBounds(0,0,500,50);
         textfield.setBackground(new Color(25, 25, 25));
         textfield.setForeground(new Color(25, 255, 0));
-        textfield.setFont(new Font("Ink Free", Font.BOLD, 30));
+        textfield.setFont(new Font("Pixal Font", Font.BOLD, 30));
         textfield.setBorder(BorderFactory.createBevelBorder(1));
         textfield.setHorizontalAlignment(JTextField.CENTER);
         textfield.setEditable(false);
 
         //text area properties
-        textArea.setBounds(0, 100, 500, 50);
+        textArea.setBounds(0, 60, 500, 50);
         textArea.setLineWrap(true); //if the text go off the screen, it will move to next line
         textArea.setWrapStyleWord(true);
         textArea.setBackground(new Color(25, 25, 25));
         textArea.setForeground(new Color(25, 255, 0));
-        textArea.setFont(new Font("Ink Free", Font.BOLD, 30));
+        textArea.setFont(new Font("Pixal Font", Font.BOLD, 30));
         textArea.setBorder(BorderFactory.createBevelBorder(1));
         textArea.setEditable(false);
 
@@ -106,6 +123,7 @@ public class UI {
         //adding button to frame
         panelStart.add(buttonStart);
         panelInfo.add(buttonInfo);
+        panelInfo.add(infoText);
         //main screen starts
         panelQuiz.add(textfield);
         panelQuiz.add(textArea);
