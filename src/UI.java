@@ -22,7 +22,7 @@ public class UI {
     char choice;
     int index;
     int correctGuesses = 0;
-    int totalQuestion = 4;
+    int totalQuestion = answer.length;
     int result;
     int seconds = 30;
 
