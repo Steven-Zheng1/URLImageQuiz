@@ -115,6 +115,22 @@ public class UI {
         buttonInfo.setFont(new Font("Pixal Font", Font.BOLD, 30));
         buttonInfo.setText("START");
 
+        buttonQuizA.setBounds(50,400,160,80);
+        buttonQuizA.setFont(new Font("Pixal Font", Font.BOLD,30));
+        buttonQuizA.setText("A");
+
+        buttonQuizB.setBounds(50,550,160,80);
+        buttonQuizB.setFont(new Font("Pixal Font", Font.BOLD,30));
+        buttonQuizB.setText("B");
+
+        buttonQuizC.setBounds(500,400,160,80);
+        buttonQuizC.setFont(new Font("Pixal Font", Font.BOLD,30));
+        buttonQuizC.setText("C");
+
+        buttonQuizD.setBounds(500,550,160,80);
+        buttonQuizD.setFont(new Font("Pixal Font", Font.BOLD,30));
+        buttonQuizD.setText("D");
+
         //setting panel colors to identify panels
         panelStart.setBackground(Color.orange);
         panelInfo.setBackground(Color.red);
