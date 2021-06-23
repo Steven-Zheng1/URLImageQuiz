@@ -1,7 +1,10 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URL;
 
 public class UI {
     //question
@@ -71,7 +74,10 @@ public class UI {
     //Last Screen
     JButton buttonDownload = new JButton();
 
-    public UI (){
+    //JLabel as image
+    JLabel image = new JLabel();
+
+    public UI () throws IOException {
         //basic frame declaration
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 700);
@@ -108,7 +114,7 @@ public class UI {
 
         //setting of button properties
         buttonStart.setBounds(420, 500, 160, 80);
-        buttonStart.setFont(new Font("Pixal Font", Font.BOLD, 30));
+        buttonStart.setFont(new Font("Ink Free", Font.BOLD, 30));
         buttonStart.setText("BEGIN");
 
         buttonInfo.setBounds(420,500,160,80);
@@ -131,12 +137,21 @@ public class UI {
         buttonQuizD.setFont(new Font("Pixal Font", Font.BOLD,30));
         buttonQuizD.setText("D");
 
+        image.setBounds(0,0,1000,700);
+        URL url = new URL("https://external-preview.redd.it/HFIDcIjI3kOScb9jyAVge6Mmno9ugaYM7mROjzhLRWE.jpg?width=960&crop=smart&auto=webp&s=02bb30627ed76ee8e4af0d13e125f407d9b58175");
+        Image urlImg = ImageIO.read(url);
+        ImageIcon icon = new ImageIcon(urlImg);
+        Image scaledImg = icon.getImage().getScaledInstance(1000, 700, Image.SCALE_DEFAULT);
+        icon = new ImageIcon(scaledImg);
+        image.setIcon(icon);
+
         //setting panel colors to identify panels
-        panelStart.setBackground(Color.orange);
+        //panelStart.setBackground(Color.orange);
         panelInfo.setBackground(Color.red);
         panelQuiz.setBackground(Color.BLUE);
 
         //adding button to frame
+        panelStart.add(image);
         panelStart.add(buttonStart);
         panelInfo.add(buttonInfo);
         panelInfo.add(infoText);
