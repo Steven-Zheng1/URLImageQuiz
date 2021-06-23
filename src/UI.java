@@ -64,6 +64,7 @@ public class UI {
     //Main Screen Button Textfields;
     JTextField textfield = new JTextField();
 
+
     //Text Area
     JTextArea textArea = new JTextArea();
     JTextArea infoText = new JTextArea();
@@ -76,8 +77,10 @@ public class UI {
 
     //JLabel as image
     JLabel image = new JLabel();
+    JLabel imageTitle = new JLabel();
 
-    public UI () throws IOException {
+
+    public UI() throws IOException {
         //basic frame declaration
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 700);
@@ -145,12 +148,26 @@ public class UI {
         icon = new ImageIcon(scaledImg);
         image.setIcon(icon);
 
+
+
+        imageTitle.setBounds(300,100,400,300);
+        URL urlTitle = new URL("https://upload.wikimedia.org/wikipedia/en/b/b0/Rick_and_Morty_characters.jpg");
+        Image urlImgTitle = ImageIO.read(urlTitle);
+        ImageIcon iconTitle = new ImageIcon(urlImgTitle);
+        Image scaledImgTitle = iconTitle.getImage().getScaledInstance(400, 300, Image.SCALE_DEFAULT);
+        iconTitle = new ImageIcon(scaledImgTitle);
+        imageTitle.setIcon(iconTitle);
+
         //setting panel colors to identify panels
         //panelStart.setBackground(Color.orange);
         panelInfo.setBackground(Color.red);
-        panelQuiz.setBackground(Color.BLUE);
+        panelQuiz.setBackground(Color.pink);
+        // new start panel
+
+
 
         //adding button to frame
+        panelStart.add(imageTitle);
         panelStart.add(image);
         panelStart.add(buttonStart);
         panelInfo.add(buttonInfo);
