@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
 
-public class UI {
+public class Ui {
     //question
     String question = "Who is this character?";
     //answer choices
@@ -78,9 +78,10 @@ public class UI {
     //JLabel as image
     JLabel image = new JLabel();
     JLabel imageTitle = new JLabel();
+    JLabel imageOne = new JLabel();
 
 
-    public UI() throws IOException {
+    public Ui() throws IOException {
         //basic frame declaration
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 700);
@@ -162,7 +163,14 @@ public class UI {
         //panelStart.setBackground(Color.orange);
         panelInfo.setBackground(Color.red);
         panelQuiz.setBackground(Color.pink);
-        // new start panel
+        // panelQuiz
+        imageOne.setBounds(300,100,400,300);
+        URL url2 = new URL("https://external-preview.redd.it/HFIDcIjI3kOScb9jyAVge6Mmno9ugaYM7mROjzhLRWE.jpg?width=960&crop=smart&auto=webp&s=02bb30627ed76ee8e4af0d13e125f407d9b58175");
+        Image urlImg1 = ImageIO.read(url2);
+        ImageIcon icon1 = new ImageIcon(urlImg1);
+        Image scaledImg1 = icon1.getImage().getScaledInstance(400, 300, Image.SCALE_DEFAULT);
+        icon1 = new ImageIcon(scaledImg1);
+        imageOne.setIcon(icon1);
 
 
 
@@ -179,6 +187,8 @@ public class UI {
         panelQuiz.add(buttonQuizB);
         panelQuiz.add(buttonQuizC);
         panelQuiz.add(buttonQuizD);
+        panelQuiz.add(imageOne);
+
         //end of main screen
         panelResult.add(buttonScore);
         panelDownload.add(buttonDownload);
@@ -187,6 +197,7 @@ public class UI {
 
         //setting card layout
         panelContainer.setLayout(layout);
+
 
         //disabling default layout
         panelStart.setLayout(null);
@@ -244,6 +255,9 @@ public class UI {
             textArea.setText(question);
 
         }
+
+
+
     }
 
 }
