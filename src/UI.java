@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
 
-public class Ui {
+public class UI {
     //question
     String question = "Who is this character?";
     //answer choices
@@ -81,7 +81,7 @@ public class Ui {
     JLabel imageOne = new JLabel();
 
 
-    public Ui() throws IOException {
+    public UI() throws IOException {
         //basic frame declaration
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 700);
