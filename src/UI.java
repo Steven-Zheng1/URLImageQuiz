@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
 
-public class UI {
+public class UI implements ActionListener {
     //question
     String question = "Who is this character?";
     //answer choices
@@ -141,6 +141,29 @@ public class UI {
         buttonQuizD.setFont(new Font("Pixal Font", Font.BOLD,30));
         buttonQuizD.setText("D");
 
+
+        //setting answer labels
+        optionA.setBounds(210,400,400,80);
+        optionA.setForeground(new Color(25,25,25));
+        optionA.setFont(new Font("Pixal Font",Font.BOLD,30));
+        optionA.setText("Artoria Pendragon");
+
+        optionB.setBounds(210,550,400,80);
+        optionB.setForeground(new Color(25,25,25));
+        optionB.setFont(new Font("Pixal Font",Font.BOLD,30));
+        optionB.setText("Artoria Pendragon");
+
+        optionC.setBounds(660,400,400,80);
+        optionC.setForeground(new Color(25,25,25));
+        optionC.setFont(new Font("Pixal Font",Font.BOLD,30));
+        optionC.setText("Artoria Pendragon");
+
+        optionD.setBounds(660,550,400,80);
+        optionD.setForeground(new Color(25,25,25));
+        optionD.setFont(new Font("Pixal Font",Font.BOLD,30));
+        optionD.setText("Artoria Pendragon");
+
+        //background
         image.setBounds(0,0,1000,700);
         URL url = new URL("https://external-preview.redd.it/HFIDcIjI3kOScb9jyAVge6Mmno9ugaYM7mROjzhLRWE.jpg?width=960&crop=smart&auto=webp&s=02bb30627ed76ee8e4af0d13e125f407d9b58175");
         Image urlImg = ImageIO.read(url);
@@ -149,8 +172,7 @@ public class UI {
         icon = new ImageIcon(scaledImg);
         image.setIcon(icon);
 
-
-
+        //title place holder
         imageTitle.setBounds(300,100,400,300);
         URL urlTitle = new URL("https://upload.wikimedia.org/wikipedia/en/b/b0/Rick_and_Morty_characters.jpg");
         Image urlImgTitle = ImageIO.read(urlTitle);
@@ -159,16 +181,16 @@ public class UI {
         iconTitle = new ImageIcon(scaledImgTitle);
         imageTitle.setIcon(iconTitle);
 
-        //setting panel colors to identify panels
         //panelStart.setBackground(Color.orange);
         panelInfo.setBackground(Color.red);
         panelQuiz.setBackground(Color.pink);
-        // panelQuiz
-        imageOne.setBounds(300,100,400,300);
+
+        // panelQuiz image
+        imageOne.setBounds(0,125,500,250);
         URL url2 = new URL("https://external-preview.redd.it/HFIDcIjI3kOScb9jyAVge6Mmno9ugaYM7mROjzhLRWE.jpg?width=960&crop=smart&auto=webp&s=02bb30627ed76ee8e4af0d13e125f407d9b58175");
         Image urlImg1 = ImageIO.read(url2);
         ImageIcon icon1 = new ImageIcon(urlImg1);
-        Image scaledImg1 = icon1.getImage().getScaledInstance(400, 300, Image.SCALE_DEFAULT);
+        Image scaledImg1 = icon1.getImage().getScaledInstance(500, 250, Image.SCALE_DEFAULT);
         icon1 = new ImageIcon(scaledImg1);
         imageOne.setIcon(icon1);
 
@@ -188,11 +210,14 @@ public class UI {
         panelQuiz.add(buttonQuizC);
         panelQuiz.add(buttonQuizD);
         panelQuiz.add(imageOne);
+        panelQuiz.add(optionA);
+        panelQuiz.add(optionB);
+        panelQuiz.add(optionC);
+        panelQuiz.add(optionD);
 
         //end of main screen
         panelResult.add(buttonScore);
         panelDownload.add(buttonDownload);
-
 
 
         //setting card layout
@@ -231,6 +256,7 @@ public class UI {
         buttonScore.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 layout.show(panelContainer, "5");
             }
         });
@@ -238,6 +264,7 @@ public class UI {
         frame.add(panelContainer);
         frame.setVisible(true); //<<this was moved here cuz the text wouldn't appear on screen4 
     }
+
     public void startQuiz() {
 
         //switching screen
@@ -253,6 +280,10 @@ public class UI {
         else {
             textfield.setText("Question " + (index + 1));
             textArea.setText(question);
+            optionA.setText(options[index][0]);
+            optionB.setText(options[index][1]);
+            optionC.setText(options[index][2]);
+            optionD.setText(options[index][3]);
 
         }
 
@@ -260,4 +291,40 @@ public class UI {
 
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //disable button
+        buttonQuizA.setEnabled(false);
+        buttonQuizB.setEnabled(false);
+        buttonQuizC.setEnabled(false);
+        buttonQuizD.setEnabled(false);
+
+        if(e.getSource() == buttonQuizA) {
+            choice = 'A';
+            if(choice == answer[index]) {
+                correctGuesses++;
+            }
+        }
+
+        if(e.getSource() == buttonQuizB) {
+            choice = 'B';
+            if(choice == answer[index]) {
+                correctGuesses++;
+            }
+        }
+
+        if(e.getSource() == buttonQuizC) {
+            choice = 'C';
+            if(choice == answer[index]) {
+                correctGuesses++;
+            }
+        }
+
+        if(e.getSource() == buttonQuizD) {
+            choice = 'D';
+            if(choice == answer[index]) {
+                correctGuesses++;
+            }
+        }
+    }
 }
