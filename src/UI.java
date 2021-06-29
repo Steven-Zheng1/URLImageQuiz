@@ -286,6 +286,7 @@ public class UI implements ActionListener {
             optionD.setText(options[index][3]);
 
         }
+        System.out.println("Reached");
 
 
 
@@ -326,5 +327,27 @@ public class UI implements ActionListener {
                 correctGuesses++;
             }
         }
+        System.out.println("Reached");
+    }
+    public void displayAnswer() {
+        buttonQuizA.setEnabled(false);
+        buttonQuizB.setEnabled(false);
+        buttonQuizC.setEnabled(false);
+        buttonQuizD.setEnabled(false);
+
+        if(answer[index] != 'A') {
+            optionA.setForeground(new Color(255,0,0));
+        }
+        if(answer[index] != 'B') {
+            optionB.setForeground(new Color(255,0,0));
+        }
+        if(answer[index] != 'C') {
+            optionC.setForeground(new Color(255,0,0));
+        }
+        if(answer[index] != 'D') {
+            optionD.setForeground(new Color(255,0,0));
+        }
+        index++;
+        nextQuestion();
     }
 }
