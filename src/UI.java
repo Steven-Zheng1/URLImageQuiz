@@ -128,18 +128,22 @@ public class UI implements ActionListener {
         buttonQuizA.setBounds(50,400,160,80);
         buttonQuizA.setFont(new Font("Pixal Font", Font.BOLD,30));
         buttonQuizA.setText("A");
+        buttonQuizA.addActionListener(this);
 
         buttonQuizB.setBounds(50,550,160,80);
         buttonQuizB.setFont(new Font("Pixal Font", Font.BOLD,30));
         buttonQuizB.setText("B");
+        buttonQuizB.addActionListener(this);
 
         buttonQuizC.setBounds(500,400,160,80);
         buttonQuizC.setFont(new Font("Pixal Font", Font.BOLD,30));
         buttonQuizC.setText("C");
+        buttonQuizC.addActionListener(this);
 
         buttonQuizD.setBounds(500,550,160,80);
         buttonQuizD.setFont(new Font("Pixal Font", Font.BOLD,30));
         buttonQuizD.setText("D");
+        buttonQuizD.addActionListener(this);
 
 
         //setting answer labels
@@ -174,7 +178,7 @@ public class UI implements ActionListener {
 
         //title place holder
         imageTitle.setBounds(300,100,400,300);
-        URL urlTitle = new URL("https://upload.wikimedia.org/wikipedia/en/b/b0/Rick_and_Morty_characters.jpg");
+        URL urlTitle = new URL("https://media.discordapp.net/attachments/835148175760949299/859533236250214500/Untitled_Artwork_1.png?width=507&height=676");
         Image urlImgTitle = ImageIO.read(urlTitle);
         ImageIcon iconTitle = new ImageIcon(urlImgTitle);
         Image scaledImgTitle = iconTitle.getImage().getScaledInstance(400, 300, Image.SCALE_DEFAULT);
@@ -328,6 +332,7 @@ public class UI implements ActionListener {
             }
         }
         System.out.println("Reached");
+        displayAnswer();
     }
     public void displayAnswer() {
         buttonQuizA.setEnabled(false);
@@ -347,7 +352,24 @@ public class UI implements ActionListener {
         if(answer[index] != 'D') {
             optionD.setForeground(new Color(255,0,0));
         }
-        index++;
-        nextQuestion();
+        Timer pause = new Timer(3000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buttonQuizA.setEnabled(true);
+                buttonQuizB.setEnabled(true);
+                buttonQuizC.setEnabled(true);
+                buttonQuizD.setEnabled(true);
+
+                optionA.setForeground(new Color(25,25,25));
+                optionB.setForeground(new Color(25,25,25));
+                optionC.setForeground(new Color(25,25,25));
+                optionD.setForeground(new Color(25,25,25));
+
+                index++;
+                nextQuestion();
+            }
+        });
+        pause.setRepeats(false);
+        pause.start();
     }
 }
