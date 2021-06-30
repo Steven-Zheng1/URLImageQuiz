@@ -178,7 +178,7 @@ public class UI implements ActionListener {
 
         //title place holder
         imageTitle.setBounds(300,100,400,300);
-        URL urlTitle = new URL("https://media.discordapp.net/attachments/835148175760949299/859613406532206602/imageedit_10_8352803537.png?width=507&height=676");
+        URL urlTitle = new URL("https://media.discordapp.net/attachments/835148175760949299/859650778536738816/Untitled_Artwork1169.png?width=810&height=1080");
         Image urlImgTitle = ImageIO.read(urlTitle);
         ImageIcon iconTitle = new ImageIcon(urlImgTitle);
         Image scaledImgTitle = iconTitle.getImage().getScaledInstance(400, 300, Image.SCALE_DEFAULT);
