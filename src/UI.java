@@ -60,6 +60,8 @@ public class UI implements ActionListener {
     JLabel optionB = new JLabel();
     JLabel optionC = new JLabel();
     JLabel optionD = new JLabel();
+    JLabel results = new JLabel();
+    JLabel resultIn = new JLabel();
 
     //Main Screen Button Textfields;
     JTextField textfield = new JTextField();
@@ -197,6 +199,35 @@ public class UI implements ActionListener {
         Image scaledImg1 = icon1.getImage().getScaledInstance(500, 250, Image.SCALE_DEFAULT);
         icon1 = new ImageIcon(scaledImg1);
         imageOne.setIcon(icon1);
+
+        // Result Screen
+        panelResult.add(results);
+        panelResult.setBackground(Color.yellow);
+
+        // Result Button
+        buttonScore.setBounds(420,500,160,80);
+        buttonScore.setFont(new Font("Pixal Font", Font.BOLD,30));
+        buttonScore.setText("Next");
+
+        // Results Screen Text
+        resultIn.setBounds(300,100,500,300);
+        URL url3 = new URL("https://contenthub-static.grammarly.com/blog/wp-content/uploads/2019/04/thumbnail-7075f02d50b2e1b87acaac02e0592003.jpeg");
+        Image urlImg5 = ImageIO.read(url3);
+        ImageIcon icon3 = new ImageIcon(urlImg5);
+        Image scaledImg3 = icon3.getImage().getScaledInstance(500, 250, Image.SCALE_DEFAULT);
+        icon3 = new ImageIcon(scaledImg3);
+        resultIn.setIcon(icon3);
+        panelResult.add(resultIn);
+
+
+        // Download Screen Button
+        buttonDownload.setBounds(400,300,160,80);
+        buttonDownload.setFont(new Font("Pixal Font", Font.BOLD,20));
+        buttonDownload.setText("Download");
+
+        // Download Screen
+        panelDownload.setBackground(Color.CYAN);
+
 
 
 
