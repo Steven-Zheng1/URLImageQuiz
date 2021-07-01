@@ -62,6 +62,8 @@ public class UI implements ActionListener {
     JLabel optionD = new JLabel();
     JLabel results = new JLabel();
     JLabel resultIn = new JLabel();
+    JLabel downloadReward = new JLabel();
+    JLabel downloadRewardTwo = new JLabel();
 
     //Main Screen Button Textfields;
     JTextField textfield = new JTextField();
@@ -147,6 +149,16 @@ public class UI implements ActionListener {
         buttonQuizD.setText("D");
         buttonQuizD.addActionListener(this);
 
+        // Result Button
+        buttonScore.setBounds(420,500,160,80);
+        buttonScore.setFont(new Font("Pixal Font", Font.BOLD,30));
+        buttonScore.setText("Next");
+
+        // Download Screen Button
+        buttonDownload.setBounds(400,300,160,80);
+        buttonDownload.setFont(new Font("Pixal Font", Font.BOLD,20));
+        buttonDownload.setText("Download");
+
 
         //setting answer labels
         optionA.setBounds(210,400,400,80);
@@ -169,6 +181,30 @@ public class UI implements ActionListener {
         optionD.setFont(new Font("Pixal Font",Font.BOLD,30));
         optionD.setText("Artoria Pendragon");
 
+        // Results Screen Label
+        results.setBounds(400,250,400,80);
+        results.setForeground(new Color(200,30,40));
+        results.setFont(new Font("Pixal Font",Font.BOLD,30));
+        results.setText("You Scored:");
+
+        // Download Screen Label
+        downloadReward.setBounds(570,300,500,250);
+        URL url4 = new URL("https://www.vhv.rs/dpng/d/414-4145119_transparent-pointing-finger-png-big-finger-point-png.png");
+        Image urlImg4 = ImageIO.read(url4);
+        ImageIcon icon4 = new ImageIcon(urlImg4);
+        Image scaledImg4 = icon4.getImage().getScaledInstance(400, 250, Image.SCALE_DEFAULT);
+        icon4 = new ImageIcon(scaledImg4);
+        downloadReward.setIcon(icon4);
+
+        downloadRewardTwo.setBounds(0,300,500,250);
+        URL url6 = new URL("https://www.pngkit.com/png/full/6-65553_pointing-finger-png-free-pointing-finger-clipart.png");
+        Image urlImg6 = ImageIO.read(url6);
+        ImageIcon icon5 = new ImageIcon(urlImg6);
+        Image scaledImg5 = icon5.getImage().getScaledInstance(400, 250, Image.SCALE_DEFAULT);
+        icon5 = new ImageIcon(scaledImg5);
+        downloadRewardTwo.setIcon(icon5);
+
+
         //background
         image.setBounds(0,0,1000,700);
         URL url = new URL("https://external-preview.redd.it/HFIDcIjI3kOScb9jyAVge6Mmno9ugaYM7mROjzhLRWE.jpg?width=960&crop=smart&auto=webp&s=02bb30627ed76ee8e4af0d13e125f407d9b58175");
@@ -187,9 +223,6 @@ public class UI implements ActionListener {
         iconTitle = new ImageIcon(scaledImgTitle);
         imageTitle.setIcon(iconTitle);
 
-        //panelStart.setBackground(Color.orange);
-        panelInfo.setBackground(Color.red);
-        panelQuiz.setBackground(Color.pink);
 
         // panelQuiz image
         imageOne.setBounds(0,125,500,250);
@@ -200,30 +233,22 @@ public class UI implements ActionListener {
         icon1 = new ImageIcon(scaledImg1);
         imageOne.setIcon(icon1);
 
-        // Result Screen
-        panelResult.add(results);
-        panelResult.setBackground(Color.yellow);
-
-        // Result Button
-        buttonScore.setBounds(420,500,160,80);
-        buttonScore.setFont(new Font("Pixal Font", Font.BOLD,30));
-        buttonScore.setText("Next");
-
         // Results Screen Text
-        resultIn.setBounds(300,100,500,300);
+        resultIn.setBounds(250,0,500,300);
         URL url3 = new URL("https://contenthub-static.grammarly.com/blog/wp-content/uploads/2019/04/thumbnail-7075f02d50b2e1b87acaac02e0592003.jpeg");
         Image urlImg5 = ImageIO.read(url3);
         ImageIcon icon3 = new ImageIcon(urlImg5);
         Image scaledImg3 = icon3.getImage().getScaledInstance(500, 250, Image.SCALE_DEFAULT);
         icon3 = new ImageIcon(scaledImg3);
         resultIn.setIcon(icon3);
-        panelResult.add(resultIn);
 
 
-        // Download Screen Button
-        buttonDownload.setBounds(400,300,160,80);
-        buttonDownload.setFont(new Font("Pixal Font", Font.BOLD,20));
-        buttonDownload.setText("Download");
+        //panelStart.setBackground(Color.orange);
+        panelInfo.setBackground(Color.red);
+        panelQuiz.setBackground(Color.pink);
+
+        // Result Screen
+        panelResult.setBackground(Color.yellow);
 
         // Download Screen
         panelDownload.setBackground(Color.CYAN);
@@ -252,7 +277,11 @@ public class UI implements ActionListener {
 
         //end of main screen
         panelResult.add(buttonScore);
+        panelResult.add(results);
+        panelResult.add(resultIn);
         panelDownload.add(buttonDownload);
+        panelDownload.add(downloadReward);
+        panelDownload.add(downloadRewardTwo);
 
 
         //setting card layout
