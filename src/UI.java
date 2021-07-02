@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class UI implements ActionListener {
     //question
@@ -14,6 +15,13 @@ public class UI implements ActionListener {
         {"Nero", "B", "C", "Arthur"},
         {"Gon", "Killua", "Ichigo", "Kazuma"}
     };
+    //URL linkes to images
+    String[] urlArrQuiz = {
+            "https://gamepress.gg/grandorder/sites/grandorder/files/styles/servant_image/public/2017-07/005%20Nero%20Claudius%204.png?itok=F5Z2fzEQ",
+            "https://static0.cbrimages.com/wordpress/wp-content/uploads/2021/03/Killua-Cropped.jpg?q=50&fit=crop&w=740&h=370&dpr=1.5",
+    };
+    //ArrayList to store imageIcon after running it through for loop
+    ArrayList<ImageIcon> quizPic = new ArrayList<>();
 
     //answer key
     char[] answer = {
@@ -228,12 +236,14 @@ public class UI implements ActionListener {
 
         // panelQuiz image
         imageOne.setBounds(0,125,500,250);
-        URL url2 = new URL("https://external-preview.redd.it/HFIDcIjI3kOScb9jyAVge6Mmno9ugaYM7mROjzhLRWE.jpg?width=960&crop=smart&auto=webp&s=02bb30627ed76ee8e4af0d13e125f407d9b58175");
-        Image urlImg1 = ImageIO.read(url2);
-        ImageIcon icon1 = new ImageIcon(urlImg1);
-        Image scaledImg1 = icon1.getImage().getScaledInstance(500, 250, Image.SCALE_DEFAULT);
-        icon1 = new ImageIcon(scaledImg1);
-        imageOne.setIcon(icon1);
+        //setting for loop to add image into arrayList
+        for(int a = 0; a < totalQuestion; a++) {
+            URL urlQuiz = new URL(urlArrQuiz[a]);
+            Image urlImgQuiz = ImageIO.read(urlQuiz);
+            ImageIcon iconQuiz = new ImageIcon(urlImgQuiz);
+            Image scaledQuizImg = iconQuiz.getImage().getScaledInstance(500, 250, Image.SCALE_DEFAULT);
+            quizPic.add(new ImageIcon(scaledQuizImg));
+        }
 
         // Results Screen Text
         resultIn.setBounds(250,0,500,300);
@@ -370,6 +380,7 @@ public class UI implements ActionListener {
         else {
             textfield.setText("Question " + (index + 1));
             textArea.setText(question);
+            imageOne.setIcon(quizPic.get(index));
             optionA.setText(options[index][0]);
             optionB.setText(options[index][1]);
             optionC.setText(options[index][2]);
