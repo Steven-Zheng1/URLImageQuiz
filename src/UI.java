@@ -29,7 +29,7 @@ public class UI implements ActionListener {
             'B'
     };
 
-    char guess;
+
     char choice;
     int index;
     int correctGuesses = 0;
@@ -92,6 +92,10 @@ public class UI implements ActionListener {
     JLabel imageTitle = new JLabel();
     JLabel imageOne = new JLabel();
     JLabel jebait = new JLabel();
+
+    //Time label
+    JLabel timeLabel = new JLabel();
+    JLabel secondsLeft = new JLabel();
 
 
     public UI() throws IOException {
@@ -197,6 +201,23 @@ public class UI implements ActionListener {
         results.setFont(new Font("Pixal Font",Font.BOLD,30));
         results.setText("You Scored:");
 
+        //time Label
+        secondsLeft.setBounds(525,175,100,100);
+        secondsLeft.setBackground(new Color(25,25,25));
+        secondsLeft.setForeground(new Color(255,0,0));
+        secondsLeft.setFont(new Font("Ink Free", Font.BOLD,60));
+        secondsLeft.setBorder(BorderFactory.createBevelBorder(1));
+        secondsLeft.setOpaque(true);
+        secondsLeft.setHorizontalAlignment(JTextField.CENTER);
+        secondsLeft.setText(String.valueOf(seconds));
+
+        timeLabel.setBounds(525, 150, 100, 25);
+        timeLabel.setBackground(new Color(50, 50, 50));
+        timeLabel.setForeground(new Color(255,0,0));
+        timeLabel.setFont(new Font("Ink Free",Font.PLAIN,20));
+        timeLabel.setHorizontalAlignment((JTextField.CENTER));
+        timeLabel.setText("Timer: ");
+
         // Download Screen Label
         downloadReward.setBounds(570,300,500,250);
         URL url4 = new URL("https://www.vhv.rs/dpng/d/414-4145119_transparent-pointing-finger-png-big-finger-point-png.png");
@@ -295,6 +316,8 @@ public class UI implements ActionListener {
         panelQuiz.add(optionB);
         panelQuiz.add(optionC);
         panelQuiz.add(optionD);
+        panelQuiz.add(timeLabel);
+        panelQuiz.add(secondsLeft);
 
         //end of main screen
         panelResult.add(buttonScore);
@@ -353,7 +376,6 @@ public class UI implements ActionListener {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Reached final");
                 jebait.setIcon(finalIconJebait);
                 panelDownload.remove(buttonDownload);
                 panelDownload.repaint();
@@ -372,9 +394,22 @@ public class UI implements ActionListener {
 
 
     }
+    Timer timer = new Timer(1000, new ActionListener() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            seconds--;
+            secondsLeft.setText(String.valueOf(seconds));
+
+            if(seconds <= 0) {
+                displayAnswer();
+            }
+        }
+    });
     public void nextQuestion() {
         if(index >= totalQuestion) {
-            results.setText("You scored: " + ((correctGuesses/totalQuestion)*100) + "%");
+            result = (correctGuesses/totalQuestion)*100;
+            results.setText("You scored: " + result + "%");
             layout.show(panelContainer, "4");
         }
         else {
@@ -386,11 +421,9 @@ public class UI implements ActionListener {
             optionC.setText(options[index][2]);
             optionD.setText(options[index][3]);
 
+            timer.start();
+
         }
-        System.out.println("Reached");
-
-
-
     }
 
     @Override
@@ -475,6 +508,10 @@ public class UI implements ActionListener {
                 optionB.setForeground(new Color(25,25,25));
                 optionC.setForeground(new Color(25,25,25));
                 optionD.setForeground(new Color(25,25,25));
+
+                seconds = 30;
+                choice = ' ';
+                secondsLeft.setText(String.valueOf(seconds));
 
                 index++;
                 nextQuestion();
