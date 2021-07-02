@@ -83,6 +83,7 @@ public class UI implements ActionListener {
     JLabel image = new JLabel();
     JLabel imageTitle = new JLabel();
     JLabel imageOne = new JLabel();
+    JLabel jebait = new JLabel();
 
 
     public UI() throws IOException {
@@ -158,6 +159,7 @@ public class UI implements ActionListener {
         buttonDownload.setBounds(400,300,160,80);
         buttonDownload.setFont(new Font("Pixal Font", Font.BOLD,20));
         buttonDownload.setText("Download");
+
 
 
         //setting answer labels
@@ -242,6 +244,15 @@ public class UI implements ActionListener {
         icon3 = new ImageIcon(scaledImg3);
         resultIn.setIcon(icon3);
 
+        //show hidden image
+        jebait.setBounds(250,0,500,300);
+        URL urlJebait = new URL("https://cdn1.dotesports.com/wp-content/uploads/2021/03/27104612/jebaited.jpg");
+        Image imgJebait = ImageIO.read(urlJebait);
+        ImageIcon iconJebait = new ImageIcon(imgJebait);
+        Image scaledJebait = iconJebait.getImage().getScaledInstance(500, 250, Image.SCALE_DEFAULT);
+        iconJebait = new ImageIcon(scaledJebait);
+        ImageIcon finalIconJebait = iconJebait;
+
 
         //panelStart.setBackground(Color.orange);
         panelInfo.setBackground(Color.red);
@@ -282,6 +293,7 @@ public class UI implements ActionListener {
         panelDownload.add(buttonDownload);
         panelDownload.add(downloadReward);
         panelDownload.add(downloadRewardTwo);
+        panelDownload.add(jebait);
 
 
         //setting card layout
@@ -325,6 +337,19 @@ public class UI implements ActionListener {
             }
         });
 
+
+
+        buttonDownload.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Reached final");
+                jebait.setIcon(finalIconJebait);
+                panelDownload.remove(buttonDownload);
+                panelDownload.repaint();
+            }
+        });
+
         frame.add(panelContainer);
         frame.setVisible(true); //<<this was moved here cuz the text wouldn't appear on screen4 
     }
@@ -339,6 +364,7 @@ public class UI implements ActionListener {
     }
     public void nextQuestion() {
         if(index >= totalQuestion) {
+            results.setText("You scored: " + ((correctGuesses/totalQuestion)*100) + "%");
             layout.show(panelContainer, "4");
         }
         else {
@@ -411,6 +437,19 @@ public class UI implements ActionListener {
         }
         if(answer[index] != 'D') {
             optionD.setForeground(new Color(255,0,0));
+        }
+
+        if(answer[index] == 'A') {
+            optionA.setForeground(new Color(25,255,0));
+        }
+        if(answer[index] == 'B') {
+            optionB.setForeground(new Color(25,255,0));
+        }
+        if(answer[index] == 'C') {
+            optionC.setForeground(new Color(25,255,0));
+        }
+        if(answer[index] == 'D') {
+            optionD.setForeground(new Color(25,255,0));
         }
 
         Timer pause = new Timer(3000, new ActionListener() {
