@@ -202,7 +202,7 @@ public class UI implements ActionListener {
         results.setText("You Scored:");
 
         //time Label
-        secondsLeft.setBounds(525,175,100,100);
+        secondsLeft.setBounds(525,275,100,100);
         secondsLeft.setBackground(new Color(25,25,25));
         secondsLeft.setForeground(new Color(255,0,0));
         secondsLeft.setFont(new Font("Ink Free", Font.BOLD,60));
@@ -211,10 +211,12 @@ public class UI implements ActionListener {
         secondsLeft.setHorizontalAlignment(JTextField.CENTER);
         secondsLeft.setText(String.valueOf(seconds));
 
-        timeLabel.setBounds(525, 150, 100, 25);
-        timeLabel.setBackground(new Color(50, 50, 50));
+        timeLabel.setBounds(525, 250, 100, 25);
+        timeLabel.setBackground(new Color(25, 25, 25));
         timeLabel.setForeground(new Color(255,0,0));
         timeLabel.setFont(new Font("Ink Free",Font.PLAIN,20));
+        timeLabel.setBorder(BorderFactory.createBevelBorder(1));
+        timeLabel.setOpaque(true);
         timeLabel.setHorizontalAlignment((JTextField.CENTER));
         timeLabel.setText("Timer: ");
 
