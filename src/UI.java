@@ -12,7 +12,7 @@ public class UI implements ActionListener {
     String question = "Who is this character?";
     //answer choices
     String[][] options = {
-        {"Nero", "B", "C", "Arthur"},
+        {"Nero", "Jotaro", "Caesar", "Arthur"},
         {"Gon", "Killua", "Ichigo", "Kazuma"}
     };
     //URL linkes to images
