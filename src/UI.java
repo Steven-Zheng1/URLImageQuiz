@@ -32,9 +32,9 @@ public class UI implements ActionListener {
 
     char choice;
     int index;
-    int correctGuesses = 0;
-    int totalQuestion = answer.length;
-    int result;
+    double correctGuesses = 0;
+    double totalQuestion = answer.length;
+    double result;
     int seconds = 30;
 
     //frame declaration
@@ -410,6 +410,7 @@ public class UI implements ActionListener {
     });
     public void nextQuestion() {
         if(index >= totalQuestion) {
+            System.out.println(correctGuesses);
             result = (correctGuesses/totalQuestion)*100;
             results.setText("You scored: " + result + "%");
             layout.show(panelContainer, "4");
@@ -464,6 +465,7 @@ public class UI implements ActionListener {
             }
         }
         System.out.println("Reached");
+
         displayAnswer();
     }
     public void displayAnswer() {
