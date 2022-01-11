@@ -396,14 +396,14 @@ public class UI implements ActionListener {
 
 
     }
-    Timer timer = new Timer(1000, new ActionListener() {
+    Timer timer = new Timer(700, new ActionListener() {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             seconds--;
             secondsLeft.setText(String.valueOf(seconds));
 
-            if(seconds <= 0) {
+            if(seconds == 0) {
                 displayAnswer();
             }
         }
@@ -500,7 +500,7 @@ public class UI implements ActionListener {
             optionD.setForeground(new Color(25,255,0));
         }
 
-        Timer pause = new Timer(3000, new ActionListener() {
+        Timer pause = new Timer(700, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonQuizA.setEnabled(true);
