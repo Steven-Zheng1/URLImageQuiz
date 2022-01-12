@@ -35,7 +35,7 @@ public class UI implements ActionListener {
     double correctGuesses = 0;
     double totalQuestion = answer.length;
     double result;
-    int seconds = 30;
+    int seconds = 10;
 
     //frame declaration
     JFrame frame = new JFrame();
@@ -513,7 +513,7 @@ public class UI implements ActionListener {
                 optionC.setForeground(new Color(25,25,25));
                 optionD.setForeground(new Color(25,25,25));
 
-                seconds = 30;
+                seconds = 10;
                 choice = ' ';
                 secondsLeft.setText(String.valueOf(seconds));
 
