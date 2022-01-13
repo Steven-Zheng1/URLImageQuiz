@@ -12,7 +12,7 @@ public class UI implements ActionListener {
     String question = "Who is this character?";
     //answer choices
     String[][] options = {
-        {"Nero", "B", "C", "Arthur"},
+        {"Nero", "Jotaro", "Caesar", "Arthur"},
         {"Gon", "Killua", "Ichigo", "Kazuma"}
     };
     //URL linkes to images
@@ -32,10 +32,10 @@ public class UI implements ActionListener {
 
     char choice;
     int index;
-    int correctGuesses = 0;
-    int totalQuestion = answer.length;
-    int result;
-    int seconds = 30;
+    double correctGuesses = 0;
+    double totalQuestion = answer.length;
+    double result;
+    int seconds = 10;
 
     //frame declaration
     JFrame frame = new JFrame();
@@ -396,20 +396,21 @@ public class UI implements ActionListener {
 
 
     }
-    Timer timer = new Timer(1000, new ActionListener() {
+    Timer timer = new Timer(700, new ActionListener() {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             seconds--;
             secondsLeft.setText(String.valueOf(seconds));
 
-            if(seconds <= 0) {
+            if(seconds == 0) {
                 displayAnswer();
             }
         }
     });
     public void nextQuestion() {
         if(index >= totalQuestion) {
+            System.out.println(correctGuesses);
             result = (correctGuesses/totalQuestion)*100;
             results.setText("You scored: " + result + "%");
             layout.show(panelContainer, "4");
@@ -464,6 +465,7 @@ public class UI implements ActionListener {
             }
         }
         System.out.println("Reached");
+
         displayAnswer();
     }
     public void displayAnswer() {
@@ -498,7 +500,7 @@ public class UI implements ActionListener {
             optionD.setForeground(new Color(25,255,0));
         }
 
-        Timer pause = new Timer(3000, new ActionListener() {
+        Timer pause = new Timer(700, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonQuizA.setEnabled(true);
@@ -511,7 +513,7 @@ public class UI implements ActionListener {
                 optionC.setForeground(new Color(25,25,25));
                 optionD.setForeground(new Color(25,25,25));
 
-                seconds = 30;
+                seconds = 10;
                 choice = ' ';
                 secondsLeft.setText(String.valueOf(seconds));
 
