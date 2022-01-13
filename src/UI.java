@@ -72,6 +72,10 @@ public class UI implements ActionListener {
     JLabel resultIn = new JLabel();
     JLabel downloadReward = new JLabel();
     JLabel downloadRewardTwo = new JLabel();
+    JLabel hintBoxOne = new JLabel();
+    JLabel hintBoxTwo = new JLabel();
+    JLabel hintBoxThree = new JLabel();
+    JLabel hintTitle = new JLabel();
 
     //Main Screen Button Textfields;
     JTextField textfield = new JTextField();
@@ -96,6 +100,12 @@ public class UI implements ActionListener {
     //Time label
     JLabel timeLabel = new JLabel();
     JLabel secondsLeft = new JLabel();
+
+    //hint button
+    JButton hintButton = new JButton();
+
+    //hint left
+    JLabel hintLeft = new JLabel();
 
 
     public UI() throws IOException {
@@ -172,6 +182,11 @@ public class UI implements ActionListener {
         buttonDownload.setFont(new Font("Pixal Font", Font.BOLD,20));
         buttonDownload.setText("Download");
 
+        //hint Button
+        hintButton.setBounds(525, 10, 100, 100);
+        hintButton.setFont(new Font("Pixal Font", Font.BOLD, 20));
+        hintButton.setText("Hint");
+
 
 
         //setting answer labels
@@ -219,6 +234,46 @@ public class UI implements ActionListener {
         timeLabel.setOpaque(true);
         timeLabel.setHorizontalAlignment((JTextField.CENTER));
         timeLabel.setText("Timer: ");
+
+        hintBoxOne.setBounds(650, 60, 325, 100);
+        hintBoxOne.setBackground(new Color(25, 25, 25));
+        hintBoxOne.setFont(new Font("Ink Free",Font.PLAIN,20));
+        hintBoxOne.setBorder(BorderFactory.createBevelBorder(1));
+        hintBoxOne.setOpaque(true);
+        hintBoxOne.setHorizontalAlignment((JTextField.CENTER));
+
+        hintBoxTwo.setBounds(650, 160, 325, 100);
+        hintBoxTwo.setBackground(new Color(25, 25, 25));
+        hintBoxTwo.setFont(new Font("Ink Free",Font.PLAIN,20));
+        hintBoxTwo.setBorder(BorderFactory.createBevelBorder(1));
+        hintBoxTwo.setOpaque(true);
+        hintBoxTwo.setHorizontalAlignment((JTextField.CENTER));
+
+        hintBoxThree.setBounds(650, 260, 325, 100);
+        hintBoxThree.setBackground(new Color(25, 25, 25));
+        hintBoxThree.setFont(new Font("Ink Free",Font.PLAIN,20));
+        hintBoxThree.setBorder(BorderFactory.createBevelBorder(1));
+        hintBoxThree.setOpaque(true);
+        hintBoxThree.setHorizontalAlignment((JTextField.CENTER));
+
+        hintTitle.setBounds(650,10,325,50);
+        hintTitle.setBackground(new Color(25,25,25));
+        hintTitle.setForeground(new Color(255,0,0));
+        hintTitle.setFont(new Font("Ink Free", Font.BOLD,60));
+        hintTitle.setBorder(BorderFactory.createBevelBorder(1));
+        hintTitle.setOpaque(true);
+        hintTitle.setHorizontalAlignment(JTextField.CENTER);
+        hintTitle.setText("HINTS");
+
+        hintLeft.setBounds(525, 130, 100, 100);
+        hintLeft.setBackground(new Color(25,25,25));
+        hintLeft.setForeground(new Color(255,0,0));
+        hintLeft.setFont(new Font("Ink Free", Font.BOLD,50));
+        hintLeft.setBorder(BorderFactory.createBevelBorder(1));
+        hintLeft.setOpaque(true);
+        hintLeft.setHorizontalAlignment(JTextField.CENTER);
+        hintLeft.setText("0/3");
+
 
         // Download Screen Label
         downloadReward.setBounds(570,300,500,250);
@@ -320,6 +375,12 @@ public class UI implements ActionListener {
         panelQuiz.add(optionD);
         panelQuiz.add(timeLabel);
         panelQuiz.add(secondsLeft);
+        panelQuiz.add(hintBoxOne);
+        panelQuiz.add(hintBoxTwo);
+        panelQuiz.add(hintBoxThree);
+        panelQuiz.add(hintTitle);
+        panelQuiz.add(hintButton);
+        panelQuiz.add(hintLeft);
 
         //end of main screen
         panelResult.add(buttonScore);
