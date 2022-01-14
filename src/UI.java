@@ -12,13 +12,22 @@ public class UI implements ActionListener {
     String question = "Who is this character?";
     //answer choices
     String[][] options = {
-        {"Nero", "Jotaro", "Caesar", "Arthur"},
-        {"Gon", "Killua", "Ichigo", "Kazuma"}
+            {"Nero", "Jotaro", "Caesar", "Arthur"},
+            {"Gon", "Killua", "Ichigo", "Kazuma"},
+            {"Goku", "Black Goku", "Zamasu", "Evil Goku"}
     };
     //URL linkes to images
     String[] urlArrQuiz = {
             "https://gamepress.gg/grandorder/sites/grandorder/files/styles/servant_image/public/2017-07/005%20Nero%20Claudius%204.png?itok=F5Z2fzEQ",
             "https://static0.cbrimages.com/wordpress/wp-content/uploads/2021/03/Killua-Cropped.jpg?q=50&fit=crop&w=740&h=370&dpr=1.5",
+            "https://static.wikia.nocookie.net/dragonball/images/b/b8/Super_Saiyan_Rose.png/revision/latest/scale-to-width-down/1000?cb=20190211104411"
+    };
+
+    //hints
+    String[][] hints = {
+            {"She is from a popular mobile game in japan.", "She is model after a Roman emperor", "Her last name is Claudis"},
+            {"He is from HunterxHunter", "He is one of the major side character", "He is an assassin"},
+            {"no", "no", "no"}
     };
     //ArrayList to store imageIcon after running it through for loop
     ArrayList<ImageIcon> quizPic = new ArrayList<>();
@@ -26,7 +35,8 @@ public class UI implements ActionListener {
     //answer key
     char[] answer = {
             'A',
-            'B'
+            'B',
+            'C'
     };
 
 
@@ -36,6 +46,7 @@ public class UI implements ActionListener {
     double totalQuestion = answer.length;
     double result;
     int seconds = 10;
+    int hintCount = 0;
 
     //frame declaration
     JFrame frame = new JFrame();
@@ -237,21 +248,24 @@ public class UI implements ActionListener {
 
         hintBoxOne.setBounds(650, 60, 325, 100);
         hintBoxOne.setBackground(new Color(25, 25, 25));
-        hintBoxOne.setFont(new Font("Ink Free",Font.PLAIN,20));
+        hintBoxOne.setForeground(new Color(255,0,0));
+        hintBoxOne.setFont(new Font("Ink Free",Font.BOLD,15));
         hintBoxOne.setBorder(BorderFactory.createBevelBorder(1));
         hintBoxOne.setOpaque(true);
         hintBoxOne.setHorizontalAlignment((JTextField.CENTER));
 
         hintBoxTwo.setBounds(650, 160, 325, 100);
         hintBoxTwo.setBackground(new Color(25, 25, 25));
-        hintBoxTwo.setFont(new Font("Ink Free",Font.PLAIN,20));
+        hintBoxTwo.setForeground(new Color(255,0,0));
+        hintBoxTwo.setFont(new Font("Ink Free",Font.BOLD,15));
         hintBoxTwo.setBorder(BorderFactory.createBevelBorder(1));
         hintBoxTwo.setOpaque(true);
         hintBoxTwo.setHorizontalAlignment((JTextField.CENTER));
 
         hintBoxThree.setBounds(650, 260, 325, 100);
         hintBoxThree.setBackground(new Color(25, 25, 25));
-        hintBoxThree.setFont(new Font("Ink Free",Font.PLAIN,20));
+        hintBoxThree.setForeground(new Color(255,0,0));
+        hintBoxThree.setFont(new Font("Ink Free",Font.BOLD,15));
         hintBoxThree.setBorder(BorderFactory.createBevelBorder(1));
         hintBoxThree.setOpaque(true);
         hintBoxThree.setHorizontalAlignment((JTextField.CENTER));
@@ -283,15 +297,15 @@ public class UI implements ActionListener {
         Image scaledImg4 = icon4.getImage().getScaledInstance(400, 250, Image.SCALE_DEFAULT);
         icon4 = new ImageIcon(scaledImg4);
         downloadReward.setIcon(icon4);
-
-        downloadRewardTwo.setBounds(0,300,500,250);
-        URL url6 = new URL("https://www.pngkit.com/png/full/6-65553_pointing-finger-png-free-pointing-finger-clipart.png");
-        Image urlImg6 = ImageIO.read(url6);
-        ImageIcon icon5 = new ImageIcon(urlImg6);
-        Image scaledImg5 = icon5.getImage().getScaledInstance(400, 250, Image.SCALE_DEFAULT);
-        icon5 = new ImageIcon(scaledImg5);
-        downloadRewardTwo.setIcon(icon5);
-
+        /****
+         downloadRewardTwo.setBounds(0,300,500,250);
+         URL url6 = new URL("https://www.pngkit.com/png/full/6-65553_pointing-finger-png-free-pointing-finger-clipart.png");
+         Image urlImg6 = ImageIO.read(url6);
+         ImageIcon icon5 = new ImageIcon(urlImg6);
+         Image scaledImg5 = icon5.getImage().getScaledInstance(400, 250, Image.SCALE_DEFAULT);
+         icon5 = new ImageIcon(scaledImg5);
+         downloadRewardTwo.setIcon(icon5);
+         ***/
 
         //background
         image.setBounds(0,0,1000,700);
@@ -433,6 +447,28 @@ public class UI implements ActionListener {
             }
         });
 
+        hintButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(hintCount < 3) {
+                    if(hintCount == 0) {
+                        hintBoxOne.setText(hints[index][0]);
+                    }
+                    if(hintCount == 1) {
+                        hintBoxTwo.setText(hints[index][1]);
+                    }
+                    if(hintCount == 2) {
+                        hintBoxThree.setText(hints[index][2]);
+                    }
+                    hintCount++;
+                    hintLeft.setText(hintCount + "/3");
+                }
+                else {
+                    hintButton.setEnabled(false);
+                }
+            }
+        });
+
 
 
         buttonDownload.addActionListener(new ActionListener() {
@@ -446,7 +482,7 @@ public class UI implements ActionListener {
         });
 
         frame.add(panelContainer);
-        frame.setVisible(true); //<<this was moved here cuz the text wouldn't appear on screen4 
+        frame.setVisible(true); //<<this was moved here cuz the text wouldn't appear on screen4
     }
 
     public void startQuiz() {
@@ -485,6 +521,11 @@ public class UI implements ActionListener {
             optionC.setText(options[index][2]);
             optionD.setText(options[index][3]);
 
+            hintCount = 0;
+            hintBoxOne.setText("");
+            hintBoxTwo.setText("");
+            hintBoxThree.setText("");
+            hintLeft.setText("0/3");
             timer.start();
 
         }
