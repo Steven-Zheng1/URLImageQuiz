@@ -13,12 +13,18 @@ public class UI implements ActionListener {
     //answer choices
     String[][] options = {
         {"Nero", "Jotaro", "Caesar", "Arthur"},
-        {"Gon", "Killua", "Ichigo", "Kazuma"}
+        {"Gon", "Killua", "Ichigo", "Kazuma"},
+        {"Nico Robin", "Boa Hancock", "Nami", "Vivi"},
+        { "Lisa Lisa,", "Yukako Yamagashi", "Remi", "Rukia"}
     };
     //URL linkes to images
     String[] urlArrQuiz = {
             "https://gamepress.gg/grandorder/sites/grandorder/files/styles/servant_image/public/2017-07/005%20Nero%20Claudius%204.png?itok=F5Z2fzEQ",
             "https://static0.cbrimages.com/wordpress/wp-content/uploads/2021/03/Killua-Cropped.jpg?q=50&fit=crop&w=740&h=370&dpr=1.5",
+            "https://static0.cbrimages.com/wordpress/wp-content/uploads/2019/12/Vivi-One-Piece-1.jpg?q=50&fit=crop&w=740&h=370&dpr=1.5",
+            "https://cdn.myanimelist.net/images/characters/2/303236.jpg"
+
+
     };
     //ArrayList to store imageIcon after running it through for loop
     ArrayList<ImageIcon> quizPic = new ArrayList<>();
@@ -26,6 +32,8 @@ public class UI implements ActionListener {
     //answer key
     char[] answer = {
             'A',
+            'B',
+            'D',
             'B'
     };
 
