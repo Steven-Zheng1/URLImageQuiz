@@ -12,19 +12,36 @@ public class UI implements ActionListener {
     String question = "Who is this character?";
     //answer choices
     String[][] options = {
+<<<<<<< HEAD
         {"Nero", "Jotaro", "Caesar", "Arthur"},
         {"Gon", "Killua", "Ichigo", "Kazuma"},
         {"Nico Robin", "Boa Hancock", "Nami", "Vivi"},
         { "Lisa Lisa,", "Yukako Yamagashi", "Remi", "Rukia"}
+=======
+            {"Nero", "Jotaro", "Caesar", "Arthur"},
+            {"Gon", "Killua", "Ichigo", "Kazuma"},
+            {"Goku", "Black Goku", "Zamasu", "Evil Goku"}
+>>>>>>> 42d2daf31c543c3ed0bd3f4ac6c28bd117e0a9c5
     };
     //URL linkes to images
     String[] urlArrQuiz = {
             "https://gamepress.gg/grandorder/sites/grandorder/files/styles/servant_image/public/2017-07/005%20Nero%20Claudius%204.png?itok=F5Z2fzEQ",
             "https://static0.cbrimages.com/wordpress/wp-content/uploads/2021/03/Killua-Cropped.jpg?q=50&fit=crop&w=740&h=370&dpr=1.5",
+<<<<<<< HEAD
             "https://static0.cbrimages.com/wordpress/wp-content/uploads/2019/12/Vivi-One-Piece-1.jpg?q=50&fit=crop&w=740&h=370&dpr=1.5",
             "https://cdn.myanimelist.net/images/characters/2/303236.jpg"
 
 
+=======
+            "https://static.wikia.nocookie.net/dragonball/images/b/b8/Super_Saiyan_Rose.png/revision/latest/scale-to-width-down/1000?cb=20190211104411"
+    };
+
+    //hints
+    String[][] hints = {
+            {"She is from a popular mobile game in japan.", "She is model after a Roman emperor", "Her last name is Claudis"},
+            {"He is from HunterxHunter", "He is one of the major side character", "He is an assassin"},
+            {"no", "no", "no"}
+>>>>>>> 42d2daf31c543c3ed0bd3f4ac6c28bd117e0a9c5
     };
     //ArrayList to store imageIcon after running it through for loop
     ArrayList<ImageIcon> quizPic = new ArrayList<>();
@@ -33,8 +50,12 @@ public class UI implements ActionListener {
     char[] answer = {
             'A',
             'B',
+<<<<<<< HEAD
             'D',
             'B'
+=======
+            'C'
+>>>>>>> 42d2daf31c543c3ed0bd3f4ac6c28bd117e0a9c5
     };
 
 
@@ -44,6 +65,7 @@ public class UI implements ActionListener {
     double totalQuestion = answer.length;
     double result;
     int seconds = 10;
+    int hintCount = 0;
 
     //frame declaration
     JFrame frame = new JFrame();
@@ -80,6 +102,10 @@ public class UI implements ActionListener {
     JLabel resultIn = new JLabel();
     JLabel downloadReward = new JLabel();
     JLabel downloadRewardTwo = new JLabel();
+    JLabel hintBoxOne = new JLabel();
+    JLabel hintBoxTwo = new JLabel();
+    JLabel hintBoxThree = new JLabel();
+    JLabel hintTitle = new JLabel();
 
     //Main Screen Button Textfields;
     JTextField textfield = new JTextField();
@@ -104,6 +130,12 @@ public class UI implements ActionListener {
     //Time label
     JLabel timeLabel = new JLabel();
     JLabel secondsLeft = new JLabel();
+
+    //hint button
+    JButton hintButton = new JButton();
+
+    //hint left
+    JLabel hintLeft = new JLabel();
 
 
     public UI() throws IOException {
@@ -180,6 +212,11 @@ public class UI implements ActionListener {
         buttonDownload.setFont(new Font("Pixal Font", Font.BOLD,20));
         buttonDownload.setText("Download");
 
+        //hint Button
+        hintButton.setBounds(525, 10, 100, 100);
+        hintButton.setFont(new Font("Pixal Font", Font.BOLD, 20));
+        hintButton.setText("Hint");
+
 
 
         //setting answer labels
@@ -228,6 +265,49 @@ public class UI implements ActionListener {
         timeLabel.setHorizontalAlignment((JTextField.CENTER));
         timeLabel.setText("Timer: ");
 
+        hintBoxOne.setBounds(650, 60, 325, 100);
+        hintBoxOne.setBackground(new Color(25, 25, 25));
+        hintBoxOne.setForeground(new Color(255,0,0));
+        hintBoxOne.setFont(new Font("Ink Free",Font.BOLD,15));
+        hintBoxOne.setBorder(BorderFactory.createBevelBorder(1));
+        hintBoxOne.setOpaque(true);
+        hintBoxOne.setHorizontalAlignment((JTextField.CENTER));
+
+        hintBoxTwo.setBounds(650, 160, 325, 100);
+        hintBoxTwo.setBackground(new Color(25, 25, 25));
+        hintBoxTwo.setForeground(new Color(255,0,0));
+        hintBoxTwo.setFont(new Font("Ink Free",Font.BOLD,15));
+        hintBoxTwo.setBorder(BorderFactory.createBevelBorder(1));
+        hintBoxTwo.setOpaque(true);
+        hintBoxTwo.setHorizontalAlignment((JTextField.CENTER));
+
+        hintBoxThree.setBounds(650, 260, 325, 100);
+        hintBoxThree.setBackground(new Color(25, 25, 25));
+        hintBoxThree.setForeground(new Color(255,0,0));
+        hintBoxThree.setFont(new Font("Ink Free",Font.BOLD,15));
+        hintBoxThree.setBorder(BorderFactory.createBevelBorder(1));
+        hintBoxThree.setOpaque(true);
+        hintBoxThree.setHorizontalAlignment((JTextField.CENTER));
+
+        hintTitle.setBounds(650,10,325,50);
+        hintTitle.setBackground(new Color(25,25,25));
+        hintTitle.setForeground(new Color(255,0,0));
+        hintTitle.setFont(new Font("Ink Free", Font.BOLD,60));
+        hintTitle.setBorder(BorderFactory.createBevelBorder(1));
+        hintTitle.setOpaque(true);
+        hintTitle.setHorizontalAlignment(JTextField.CENTER);
+        hintTitle.setText("HINTS");
+
+        hintLeft.setBounds(525, 130, 100, 100);
+        hintLeft.setBackground(new Color(25,25,25));
+        hintLeft.setForeground(new Color(255,0,0));
+        hintLeft.setFont(new Font("Ink Free", Font.BOLD,50));
+        hintLeft.setBorder(BorderFactory.createBevelBorder(1));
+        hintLeft.setOpaque(true);
+        hintLeft.setHorizontalAlignment(JTextField.CENTER);
+        hintLeft.setText("0/3");
+
+
         // Download Screen Label
         downloadReward.setBounds(570,300,500,250);
         URL url4 = new URL("https://www.vhv.rs/dpng/d/414-4145119_transparent-pointing-finger-png-big-finger-point-png.png");
@@ -236,15 +316,15 @@ public class UI implements ActionListener {
         Image scaledImg4 = icon4.getImage().getScaledInstance(400, 250, Image.SCALE_DEFAULT);
         icon4 = new ImageIcon(scaledImg4);
         downloadReward.setIcon(icon4);
-
-        downloadRewardTwo.setBounds(0,300,500,250);
-        URL url6 = new URL("https://www.pngkit.com/png/full/6-65553_pointing-finger-png-free-pointing-finger-clipart.png");
-        Image urlImg6 = ImageIO.read(url6);
-        ImageIcon icon5 = new ImageIcon(urlImg6);
-        Image scaledImg5 = icon5.getImage().getScaledInstance(400, 250, Image.SCALE_DEFAULT);
-        icon5 = new ImageIcon(scaledImg5);
-        downloadRewardTwo.setIcon(icon5);
-
+        /****
+         downloadRewardTwo.setBounds(0,300,500,250);
+         URL url6 = new URL("https://www.pngkit.com/png/full/6-65553_pointing-finger-png-free-pointing-finger-clipart.png");
+         Image urlImg6 = ImageIO.read(url6);
+         ImageIcon icon5 = new ImageIcon(urlImg6);
+         Image scaledImg5 = icon5.getImage().getScaledInstance(400, 250, Image.SCALE_DEFAULT);
+         icon5 = new ImageIcon(scaledImg5);
+         downloadRewardTwo.setIcon(icon5);
+         ***/
 
         //background
         image.setBounds(0,0,1000,700);
@@ -328,6 +408,12 @@ public class UI implements ActionListener {
         panelQuiz.add(optionD);
         panelQuiz.add(timeLabel);
         panelQuiz.add(secondsLeft);
+        panelQuiz.add(hintBoxOne);
+        panelQuiz.add(hintBoxTwo);
+        panelQuiz.add(hintBoxThree);
+        panelQuiz.add(hintTitle);
+        panelQuiz.add(hintButton);
+        panelQuiz.add(hintLeft);
 
         //end of main screen
         panelResult.add(buttonScore);
@@ -380,6 +466,28 @@ public class UI implements ActionListener {
             }
         });
 
+        hintButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(hintCount < 3) {
+                    if(hintCount == 0) {
+                        hintBoxOne.setText(hints[index][0]);
+                    }
+                    if(hintCount == 1) {
+                        hintBoxTwo.setText(hints[index][1]);
+                    }
+                    if(hintCount == 2) {
+                        hintBoxThree.setText(hints[index][2]);
+                    }
+                    hintCount++;
+                    hintLeft.setText(hintCount + "/3");
+                }
+                else {
+                    hintButton.setEnabled(false);
+                }
+            }
+        });
+
 
 
         buttonDownload.addActionListener(new ActionListener() {
@@ -393,7 +501,7 @@ public class UI implements ActionListener {
         });
 
         frame.add(panelContainer);
-        frame.setVisible(true); //<<this was moved here cuz the text wouldn't appear on screen4 
+        frame.setVisible(true); //<<this was moved here cuz the text wouldn't appear on screen4
     }
 
     public void startQuiz() {
@@ -432,6 +540,11 @@ public class UI implements ActionListener {
             optionC.setText(options[index][2]);
             optionD.setText(options[index][3]);
 
+            hintCount = 0;
+            hintBoxOne.setText("");
+            hintBoxTwo.setText("");
+            hintBoxThree.setText("");
+            hintLeft.setText("0/3");
             timer.start();
 
         }
