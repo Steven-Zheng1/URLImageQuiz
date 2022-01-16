@@ -12,27 +12,14 @@ public class UI implements ActionListener {
     String question = "Who is this character?";
     //answer choices
     String[][] options = {
-<<<<<<< HEAD
-        {"Nero", "Jotaro", "Caesar", "Arthur"},
-        {"Gon", "Killua", "Ichigo", "Kazuma"},
-        {"Nico Robin", "Boa Hancock", "Nami", "Vivi"},
-        { "Lisa Lisa,", "Yukako Yamagashi", "Remi", "Rukia"}
-=======
             {"Nero", "Jotaro", "Caesar", "Arthur"},
             {"Gon", "Killua", "Ichigo", "Kazuma"},
             {"Goku", "Black Goku", "Zamasu", "Evil Goku"}
->>>>>>> 42d2daf31c543c3ed0bd3f4ac6c28bd117e0a9c5
     };
     //URL linkes to images
     String[] urlArrQuiz = {
             "https://gamepress.gg/grandorder/sites/grandorder/files/styles/servant_image/public/2017-07/005%20Nero%20Claudius%204.png?itok=F5Z2fzEQ",
             "https://static0.cbrimages.com/wordpress/wp-content/uploads/2021/03/Killua-Cropped.jpg?q=50&fit=crop&w=740&h=370&dpr=1.5",
-<<<<<<< HEAD
-            "https://static0.cbrimages.com/wordpress/wp-content/uploads/2019/12/Vivi-One-Piece-1.jpg?q=50&fit=crop&w=740&h=370&dpr=1.5",
-            "https://cdn.myanimelist.net/images/characters/2/303236.jpg"
-
-
-=======
             "https://static.wikia.nocookie.net/dragonball/images/b/b8/Super_Saiyan_Rose.png/revision/latest/scale-to-width-down/1000?cb=20190211104411"
     };
 
@@ -41,7 +28,6 @@ public class UI implements ActionListener {
             {"She is from a popular mobile game in japan.", "She is model after a Roman emperor", "Her last name is Claudis"},
             {"He is from HunterxHunter", "He is one of the major side character", "He is an assassin"},
             {"no", "no", "no"}
->>>>>>> 42d2daf31c543c3ed0bd3f4ac6c28bd117e0a9c5
     };
     //ArrayList to store imageIcon after running it through for loop
     ArrayList<ImageIcon> quizPic = new ArrayList<>();
@@ -50,12 +36,7 @@ public class UI implements ActionListener {
     char[] answer = {
             'A',
             'B',
-<<<<<<< HEAD
-            'D',
-            'B'
-=======
             'C'
->>>>>>> 42d2daf31c543c3ed0bd3f4ac6c28bd117e0a9c5
     };
 
 
