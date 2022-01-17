@@ -27,7 +27,7 @@ public class UI implements ActionListener {
     String[][] hints = {
             {"She is from a popular mobile game in japan.", "She is model after a Roman emperor", "Her last name is Claudis"},
             {"He is from HunterxHunter", "He is one of the major side character", "He is an assassin"},
-            {"no", "no", "no"}
+            {"Divine Justice", "New order", "peasants"}
     };
     //ArrayList to store imageIcon after running it through for loop
     ArrayList<ImageIcon> quizPic = new ArrayList<>();
@@ -45,7 +45,7 @@ public class UI implements ActionListener {
     double correctGuesses = 0;
     double totalQuestion = answer.length;
     double result;
-    int seconds = 10;
+    int seconds = 20;
     int hintCount = 0;
 
     //frame declaration
@@ -616,7 +616,7 @@ public class UI implements ActionListener {
                 optionC.setForeground(new Color(25,25,25));
                 optionD.setForeground(new Color(25,25,25));
 
-                seconds = 10;
+                seconds = 20;
                 choice = ' ';
                 secondsLeft.setText(String.valueOf(seconds));
 
