@@ -526,6 +526,7 @@ public class UI implements ActionListener {
             hintBoxTwo.setText("");
             hintBoxThree.setText("");
             hintLeft.setText("0/3");
+            hintButton.setEnabled(true);
             timer.start();
 
         }
