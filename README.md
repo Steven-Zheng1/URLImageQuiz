@@ -1,14 +1,13 @@
 /***************************************************************************
 
 Project: 
-
-  Anime Character Guessing Game
+  URL image Guessing Game
   
   
 Description: 
 
-  A random asortment of pictures of character will be displayed and the user 
-  will have to select/type(have not decided) the name of the character.
+  A random asortment of pictures will be displayed and the user 
+  will have to select the name of the image.
   
 -------------------------------------------------------------------------------
 Members:
